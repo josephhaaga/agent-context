@@ -1,0 +1,28 @@
+[
+  {
+    "number": 42,
+    "title": "Fix the flaky tests",
+    "body": "The tests on CI are randomly failing due to a race condition in the scheduler.",
+    "url": "https://github.com/myorg/myrepo/issues/42",
+    "author": {"login": "alice"},
+    "createdAt": "2025-01-10T00:00:00Z",
+    "updatedAt": "2025-03-01T00:00:00Z",
+    "state": "OPEN",
+    "labels": [{"name": "bug"}, {"name": "ci"}],
+    "assignees": [{"login": "bob"}],
+    "milestone": null
+  },
+  {
+    "number": 7,
+    "title": "Add dark mode support",
+    "body": "Users are requesting dark mode. We should implement it using CSS variables.",
+    "url": "https://github.com/myorg/myrepo/issues/7",
+    "author": {"login": "charlie"},
+    "createdAt": "2025-01-01T00:00:00Z",
+    "updatedAt": "2025-01-15T00:00:00Z",
+    "state": "OPEN",
+    "labels": [{"name": "enhancement"}],
+    "assignees": [],
+    "milestone": {"title": "v2.0"}
+  }
+]

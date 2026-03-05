@@ -1,0 +1,33 @@
+{
+  "channels": [
+    {"id": "C123ABC", "name": "engineering", "is_private": false, "is_im": false},
+    {"id": "C456DEF", "name": "general", "is_private": false, "is_im": false},
+    {"id": "C789GHI", "name": "random", "is_private": false, "is_im": false}
+  ],
+  "messages": [
+    {
+      "ts": "1704100000.000100",
+      "user": "U111AAA",
+      "username": "alice",
+      "text": "Has anyone looked at the scheduler race condition? It keeps causing flaky tests.",
+      "thread_ts": "1704100000.000100",
+      "reply_count": 2
+    },
+    {
+      "ts": "1704101000.000200",
+      "user": "U222BBB",
+      "username": "bob",
+      "text": "Yeah, I filed an issue for it. Should be fixed in the next sprint.",
+      "thread_ts": "1704100000.000100",
+      "reply_count": 0
+    },
+    {
+      "ts": "1704200000.000300",
+      "user": "U333CCC",
+      "username": "charlie",
+      "text": "Dark mode PR is ready for review! <https://github.com/myorg/myrepo/pull/99|PR #99>",
+      "thread_ts": null,
+      "reply_count": 0
+    }
+  ]
+}

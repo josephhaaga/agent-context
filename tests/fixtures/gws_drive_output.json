@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "id": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms",
+      "name": "Q1 Engineering Roadmap",
+      "mimeType": "application/vnd.google-apps.document",
+      "webViewLink": "https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/edit",
+      "owners": [{"emailAddress": "dave@example.com"}],
+      "createdTime": "2025-01-02T09:00:00.000Z",
+      "modifiedTime": "2025-02-28T14:30:00.000Z",
+      "description": "Q1 2025 roadmap document"
+    },
+    {
+      "id": "1ABCdefGHIjklMNOpqrSTUvwxYZ1234567890abcdefgh",
+      "name": "Sprint Planning Notes",
+      "mimeType": "text/plain",
+      "webViewLink": "https://drive.google.com/file/d/1ABCdefGHIjklMNOpqrSTUvwxYZ1234567890abcdefgh/view",
+      "owners": [{"emailAddress": "alice@example.com"}],
+      "createdTime": "2025-02-01T10:00:00.000Z",
+      "modifiedTime": "2025-02-15T11:00:00.000Z",
+      "description": ""
+    }
+  ]
+}
