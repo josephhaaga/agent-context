@@ -15,8 +15,8 @@ import asyncio
 import json
 import re
 import shutil
-from datetime import datetime, timezone
-from typing import AsyncIterator
+from collections.abc import AsyncIterator
+from datetime import UTC, datetime
 
 from agent_context.models import Document, SourceStatus
 from agent_context.plugins.base import (
@@ -32,7 +32,7 @@ def _utc_from_ts(ts: str | float | None) -> datetime | None:
     if ts is None:
         return None
     try:
-        return datetime.fromtimestamp(float(ts), tz=timezone.utc)
+        return datetime.fromtimestamp(float(ts), tz=UTC)
     except (ValueError, TypeError):
         return None
 

@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import json
+from datetime import UTC
 from pathlib import Path
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, patch
 
 import pytest
 
@@ -38,11 +39,11 @@ async def test_fetch_issues_basic() -> None:
 @pytest.mark.asyncio
 async def test_fetch_issues_since_filter() -> None:
     """Documents updated before `since` are excluded."""
-    from datetime import datetime, timezone
+    from datetime import datetime
 
     plugin = _make_plugin({"repos": ["myorg/myrepo"], "include_prs": False, "include_wiki": False})
     # Both fixtures have updatedAt in Jan or Mar 2025; cut at Feb 1
-    cutoff = datetime(2025, 2, 1, tzinfo=timezone.utc)
+    cutoff = datetime(2025, 2, 1, tzinfo=UTC)
 
     with patch("agent_context.plugins.github._gh", new_callable=AsyncMock) as mock_gh:
         mock_gh.return_value = json.dumps(ISSUES)

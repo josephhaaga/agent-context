@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+from datetime import UTC
 from pathlib import Path
 
 import pytest
@@ -28,7 +29,7 @@ async def db(tmp_path: Path) -> Database:
 
 @pytest.fixture
 def sample_doc() -> Document:
-    from datetime import datetime, timezone
+    from datetime import datetime
 
     return Document(
         source="github",
@@ -38,15 +39,15 @@ def sample_doc() -> Document:
         content="The tests on CI are randomly failing due to a race condition in the scheduler.",
         url="https://github.com/myorg/myrepo/issues/42",
         author="alice",
-        created_at=datetime(2025, 1, 10, tzinfo=timezone.utc),
-        updated_at=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        created_at=datetime(2025, 1, 10, tzinfo=UTC),
+        updated_at=datetime(2025, 3, 1, tzinfo=UTC),
         metadata={"repo": "myorg/myrepo", "number": 42, "state": "open"},
     )
 
 
 @pytest.fixture
 def sample_docs() -> list[Document]:
-    from datetime import datetime, timezone
+    from datetime import datetime
 
     return [
         Document(
@@ -57,8 +58,8 @@ def sample_docs() -> list[Document]:
             content="Users are requesting dark mode. We should implement it using CSS variables.",
             url="https://github.com/myorg/myrepo/issues/1",
             author="bob",
-            created_at=datetime(2025, 1, 1, tzinfo=timezone.utc),
-            updated_at=datetime(2025, 1, 15, tzinfo=timezone.utc),
+            created_at=datetime(2025, 1, 1, tzinfo=UTC),
+            updated_at=datetime(2025, 1, 15, tzinfo=UTC),
         ),
         Document(
             source="github",
@@ -68,8 +69,8 @@ def sample_docs() -> list[Document]:
             content="This PR adds dark mode by introducing CSS variables for all colour tokens.",
             url="https://github.com/myorg/myrepo/pull/99",
             author="alice",
-            created_at=datetime(2025, 2, 1, tzinfo=timezone.utc),
-            updated_at=datetime(2025, 2, 20, tzinfo=timezone.utc),
+            created_at=datetime(2025, 2, 1, tzinfo=UTC),
+            updated_at=datetime(2025, 2, 20, tzinfo=UTC),
         ),
         Document(
             source="slack",
@@ -79,8 +80,8 @@ def sample_docs() -> list[Document]:
             content="Has anyone looked at the scheduler race condition? It keeps causing flaky tests.",
             url="https://acme.slack.com/archives/C123/p1704100000000100",
             author="charlie",
-            created_at=datetime(2025, 1, 5, tzinfo=timezone.utc),
-            updated_at=datetime(2025, 1, 5, tzinfo=timezone.utc),
+            created_at=datetime(2025, 1, 5, tzinfo=UTC),
+            updated_at=datetime(2025, 1, 5, tzinfo=UTC),
         ),
         Document(
             source="google",
@@ -90,8 +91,8 @@ def sample_docs() -> list[Document]:
             content="Dark mode, performance improvements, and the scheduler refactor are top priorities.",
             url="https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms",
             author="dave@example.com",
-            created_at=datetime(2025, 1, 2, tzinfo=timezone.utc),
-            updated_at=datetime(2025, 2, 28, tzinfo=timezone.utc),
+            created_at=datetime(2025, 1, 2, tzinfo=UTC),
+            updated_at=datetime(2025, 2, 28, tzinfo=UTC),
         ),
     ]
 

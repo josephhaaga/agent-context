@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from datetime import UTC
+
 import pytest
 
-from agent_context.models import Document, SearchResult
+from agent_context.models import Document
 from agent_context.search.engine import search as hybrid_search
 from agent_context.search.fts import keyword_search
 from agent_context.storage.database import Database
@@ -77,10 +79,10 @@ async def test_hybrid_search_limit(db: Database, sample_docs: list[Document]) ->
 
 @pytest.mark.asyncio
 async def test_hybrid_search_after_filter(db: Database, sample_docs: list[Document]) -> None:
-    from datetime import datetime, timezone
+    from datetime import datetime
 
     await db.upsert_documents(sample_docs)
-    cutoff = datetime(2025, 2, 10, tzinfo=timezone.utc)
+    cutoff = datetime(2025, 2, 10, tzinfo=UTC)
     results = await hybrid_search(db, "dark mode", after=cutoff, semantic=False)
     for r in results:
         if r.document.updated_at is not None:

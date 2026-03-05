@@ -17,16 +17,16 @@ import json
 import shutil
 import urllib.parse
 import webbrowser
-from datetime import datetime, timezone
+from collections.abc import AsyncIterator
+from datetime import UTC, datetime
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from threading import Thread
-from typing import AsyncIterator
 
 import httpx
 
 from agent_context.models import Document, SourceStatus
-from agent_context.plugins.base import AuthError, BasePlugin, PluginError, register
+from agent_context.plugins.base import AuthError, BasePlugin, register
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -56,7 +56,7 @@ _TOKEN_CACHE = Path.home() / ".config" / "agent-context" / "google_token.json"
 def _utc(s: str | None) -> datetime | None:
     if not s:
         return None
-    return datetime.fromisoformat(s.replace("Z", "+00:00")).astimezone(timezone.utc)
+    return datetime.fromisoformat(s.replace("Z", "+00:00")).astimezone(UTC)
 
 
 # ---------------------------------------------------------------------------

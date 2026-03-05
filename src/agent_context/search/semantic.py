@@ -32,7 +32,7 @@ def _text_for_embedding(doc: Document) -> str:
 
 
 @functools.lru_cache(maxsize=4)
-def _load_model(model_name: str) -> "SentenceTransformer":
+def _load_model(model_name: str) -> SentenceTransformer:
     """Load (and cache) a SentenceTransformer model.
 
     Deferred import so the dependency is only loaded when semantic search
@@ -90,7 +90,7 @@ async def build_embeddings(
     texts = [_text_for_embedding(doc) for doc in docs]
     embeddings = await _embed_texts(texts, model_name)
 
-    for doc, emb in zip(docs, embeddings):
+    for doc, emb in zip(docs, embeddings, strict=True):
         await db.upsert_embedding(doc.id, emb, model_name)
 
     return len(docs)

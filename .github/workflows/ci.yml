@@ -25,13 +25,16 @@ jobs:
         run: uv python install ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: uv sync --extra dev
+        run: uv sync --group dev
 
       - name: Lint with ruff
         run: uv run ruff check src/ tests/
 
-      - name: Type check with mypy
-        run: uv run mypy src/
+      - name: Install watchman
+        run: sudo apt-get install -y watchman
+
+      - name: Type check with pyre
+        run: uv run pyre check
 
       - name: Run tests
         run: uv run pytest tests/ -v

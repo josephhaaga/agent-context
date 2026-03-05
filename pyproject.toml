@@ -37,7 +37,8 @@ dev = [
     "pytest-asyncio>=0.23.0",
     "pytest-httpx>=0.30.0",
     "ruff>=0.4.0",
-    "mypy>=1.10.0",
+    "pyre-check>=0.9.25",
+    "pre-commit>=3.7.0",
 ]
 
 [project.scripts]
@@ -63,20 +64,16 @@ line-length = 100
 select = ["E", "F", "I", "UP", "B", "SIM"]
 ignore = ["E501"]
 
-[tool.mypy]
-python_version = "3.12"
-strict = true
-warn_return_any = true
-
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "pytest>=8.0.0",
     "pytest-asyncio>=0.23.0",
     "pytest-httpx>=0.30.0",
     "ruff>=0.4.0",
-    "mypy>=1.10.0",
+    "pyre-check>=0.9.25",
+    "pre-commit>=3.7.0",
 ]

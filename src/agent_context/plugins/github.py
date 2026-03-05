@@ -5,8 +5,8 @@ from __future__ import annotations
 import asyncio
 import json
 import shutil
-from datetime import datetime, timezone
-from typing import AsyncIterator
+from collections.abc import AsyncIterator
+from datetime import UTC, datetime
 
 from agent_context.models import Document, SourceStatus
 from agent_context.plugins.base import (
@@ -21,7 +21,7 @@ from agent_context.plugins.base import (
 def _utc(s: str | None) -> datetime | None:
     if not s:
         return None
-    return datetime.fromisoformat(s.replace("Z", "+00:00")).astimezone(timezone.utc)
+    return datetime.fromisoformat(s.replace("Z", "+00:00")).astimezone(UTC)
 
 
 async def _gh(*args: str, check: bool = True) -> str:

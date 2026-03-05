@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 import io
+from collections.abc import AsyncIterator
 from datetime import datetime
 from pathlib import Path
-from typing import AsyncIterator
 
 import aiosqlite
 import numpy as np
 
-from agent_context.models import Document, SourceStatus, json_to_metadata, metadata_to_json
+from agent_context.models import Document, json_to_metadata, metadata_to_json
 
 _SCHEMA_PATH = Path(__file__).parent / "schema.sql"
 
@@ -40,7 +40,7 @@ class Database:
             await self._conn.close()
             self._conn = None
 
-    async def __aenter__(self) -> "Database":
+    async def __aenter__(self) -> Database:
         await self.connect()
         return self
 

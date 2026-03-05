@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
-from textual.app import App, ComposeResult
+from textual.app import App
 from textual.binding import Binding
-from textual.widgets import Footer, Header
 
 from agent_context.config.models import AppConfig
 from agent_context.tui.screens.search import SearchScreen

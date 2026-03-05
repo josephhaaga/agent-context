@@ -4,13 +4,11 @@ from __future__ import annotations
 
 import asyncio
 import subprocess
-import sys
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Annotated, Optional
+from typing import Annotated
 
 import typer
-import yaml
 from rich.console import Console
 
 from agent_context.cli.formatters import (
@@ -19,7 +17,7 @@ from agent_context.cli.formatters import (
     print_status_human,
     print_status_json,
 )
-from agent_context.config.loader import DEFAULT_CONFIG_PATH, config_path, load_config, save_config
+from agent_context.config.loader import config_path, load_config
 from agent_context.config.wizard import run_wizard
 from agent_context.models import SourceStatus
 from agent_context.plugins.base import AuthError, CLINotFoundError, PluginError, discover_plugins
@@ -47,7 +45,7 @@ _FORMAT_CHOICES = ["human", "json"]
 # ---------------------------------------------------------------------------
 
 
-def _load_cfg(config: Optional[Path]):
+def _load_cfg(config: Path | None):
     return load_config(config)
 
 
@@ -56,9 +54,7 @@ def _run(coro):
 
 
 def _now_utc() -> datetime:
-    from datetime import timezone
-
-    return datetime.now(tz=timezone.utc)
+    return datetime.now(tz=UTC)
 
 
 # ---------------------------------------------------------------------------
@@ -69,16 +65,14 @@ def _now_utc() -> datetime:
 @app.callback(invoke_without_command=True)
 def root(
     ctx: typer.Context,
-    config: Annotated[
-        Optional[Path], typer.Option("--config", "-c", help="Config file path")
-    ] = None,
+    config: Annotated[Path | None, typer.Option("--config", "-c", help="Config file path")] = None,
 ) -> None:
     """Launch the interactive TUI when called with no subcommand."""
     if ctx.invoked_subcommand is None:
         _launch_tui(config)
 
 
-def _launch_tui(config: Optional[Path]) -> None:
+def _launch_tui(config: Path | None) -> None:
     try:
         from agent_context.tui.app import AgentContextApp  # noqa: PLC0415
 
@@ -86,7 +80,7 @@ def _launch_tui(config: Optional[Path]) -> None:
         AgentContextApp(cfg).run()
     except ImportError as exc:
         console.print(f"[red]TUI unavailable:[/red] {exc}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from exc
 
 
 # ---------------------------------------------------------------------------
@@ -96,7 +90,7 @@ def _launch_tui(config: Optional[Path]) -> None:
 
 @app.command()
 def init(
-    config: Annotated[Optional[Path], typer.Option("--config", "-c")] = None,
+    config: Annotated[Path | None, typer.Option("--config", "-c")] = None,
 ) -> None:
     """Run interactive setup wizard."""
     run_wizard(config)
@@ -111,34 +105,32 @@ def init(
 def search(
     query: Annotated[str, typer.Argument(help="Search query")],
     source: Annotated[
-        Optional[str], typer.Option("--source", "-s", help="Filter by source name")
+        str | None, typer.Option("--source", "-s", help="Filter by source name")
     ] = None,
     format: Annotated[
         str, typer.Option("--format", "-f", help="Output format: human or json")
     ] = "human",
     limit: Annotated[int, typer.Option("--limit", "-n", help="Max results")] = 0,
     after: Annotated[
-        Optional[str], typer.Option("--after", help="ISO date filter e.g. 2025-01-01")
+        str | None, typer.Option("--after", help="ISO date filter e.g. 2025-01-01")
     ] = None,
     semantic: Annotated[
         bool, typer.Option("--semantic/--no-semantic", help="Enable semantic search")
     ] = True,
-    config: Annotated[Optional[Path], typer.Option("--config", "-c")] = None,
+    config: Annotated[Path | None, typer.Option("--config", "-c")] = None,
 ) -> None:
     """Search indexed documents."""
     cfg = _load_cfg(config)
     effective_limit = limit or cfg.search.default_limit
 
     sources_filter = [source] if source else None
-    after_dt: Optional[datetime] = None
+    after_dt: datetime | None = None
     if after:
         try:
-            from datetime import timezone  # noqa: PLC0415
-
-            after_dt = datetime.fromisoformat(after).replace(tzinfo=timezone.utc)
-        except ValueError:
+            after_dt = datetime.fromisoformat(after).replace(tzinfo=UTC)
+        except ValueError as exc:
             console.print(f"[red]Invalid --after date:[/red] {after}")
-            raise typer.Exit(1)
+            raise typer.Exit(1) from exc
 
     use_semantic = semantic and cfg.search.semantic
 
@@ -172,13 +164,13 @@ def search(
 @app.command()
 def refresh(
     source: Annotated[
-        Optional[str], typer.Option("--source", "-s", help="Refresh only this source")
+        str | None, typer.Option("--source", "-s", help="Refresh only this source")
     ] = None,
     build_index: Annotated[
         bool,
         typer.Option("--embeddings/--no-embeddings", help="Generate embeddings after indexing"),
     ] = True,
-    config: Annotated[Optional[Path], typer.Option("--config", "-c")] = None,
+    config: Annotated[Path | None, typer.Option("--config", "-c")] = None,
 ) -> None:
     """Fetch and index documents from sources."""
     cfg = _load_cfg(config)
@@ -202,7 +194,7 @@ def refresh(
                 plugin = plugin_cls(plugin_cfg_dict)
                 console.print(f"[bold]Refreshing[/bold] [cyan]{name}[/cyan]…")
                 count = 0
-                error: Optional[str] = None
+                error: str | None = None
                 try:
                     async for doc in plugin.fetch():
                         await db.upsert_document(doc)
@@ -232,7 +224,7 @@ def refresh(
 @app.command()
 def status(
     format: Annotated[str, typer.Option("--format", "-f")] = "human",
-    config: Annotated[Optional[Path], typer.Option("--config", "-c")] = None,
+    config: Annotated[Path | None, typer.Option("--config", "-c")] = None,
 ) -> None:
     """Show health and index status for all sources."""
     cfg = _load_cfg(config)
@@ -270,7 +262,7 @@ def status(
 @sources_app.command("list")
 def sources_list(
     format: Annotated[str, typer.Option("--format", "-f")] = "human",
-    config: Annotated[Optional[Path], typer.Option("--config", "-c")] = None,
+    config: Annotated[Path | None, typer.Option("--config", "-c")] = None,
 ) -> None:
     """List available source plugins."""
     plugins = discover_plugins()
@@ -286,7 +278,7 @@ def sources_list(
 @sources_app.command("test")
 def sources_test(
     source_name: Annotated[str, typer.Argument(help="Source name to test")],
-    config: Annotated[Optional[Path], typer.Option("--config", "-c")] = None,
+    config: Annotated[Path | None, typer.Option("--config", "-c")] = None,
 ) -> None:
     """Test connectivity for a specific source."""
     plugins = discover_plugins()
@@ -312,7 +304,7 @@ def sources_test(
 @sources_app.command("reauth")
 def sources_reauth(
     source_name: Annotated[str, typer.Argument(help="Source name to re-authenticate")],
-    config: Annotated[Optional[Path], typer.Option("--config", "-c")] = None,
+    config: Annotated[Path | None, typer.Option("--config", "-c")] = None,
 ) -> None:
     """Re-authenticate a source (interactive)."""
     plugins = discover_plugins()
@@ -337,7 +329,7 @@ def sources_reauth(
 
 @config_app.command("show")
 def config_show(
-    config: Annotated[Optional[Path], typer.Option("--config", "-c")] = None,
+    config: Annotated[Path | None, typer.Option("--config", "-c")] = None,
 ) -> None:
     """Print the current config file."""
     path = config_path(config)
@@ -351,14 +343,14 @@ def config_show(
 
 @config_app.command("edit")
 def config_edit(
-    config: Annotated[Optional[Path], typer.Option("--config", "-c")] = None,
+    config: Annotated[Path | None, typer.Option("--config", "-c")] = None,
 ) -> None:
     """Open the config file in $EDITOR."""
     import os  # noqa: PLC0415
 
     path = config_path(config)
     if not path.exists():
-        console.print(f"[yellow]Config not found. Running init first…[/yellow]")
+        console.print("[yellow]Config not found. Running init first…[/yellow]")
         run_wizard(path)
         return
     editor = os.environ.get("EDITOR", "vi")
@@ -372,7 +364,7 @@ def config_edit(
 
 @app.command()
 def tui(
-    config: Annotated[Optional[Path], typer.Option("--config", "-c")] = None,
+    config: Annotated[Path | None, typer.Option("--config", "-c")] = None,
 ) -> None:
     """Launch the interactive TUI."""
     _launch_tui(config)

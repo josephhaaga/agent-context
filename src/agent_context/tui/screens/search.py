@@ -83,7 +83,6 @@ class SearchScreen(Screen):
         await self._do_search(query)
 
     async def _do_search(self, query: str) -> None:
-        import asyncio  # noqa: PLC0415
 
         from agent_context.search.engine import search as hybrid_search  # noqa: PLC0415
         from agent_context.storage.database import Database  # noqa: PLC0415

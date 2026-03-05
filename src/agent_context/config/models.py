@@ -21,7 +21,7 @@ class PluginConfig:
         return d
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "PluginConfig":
+    def from_dict(cls, data: dict[str, Any]) -> PluginConfig:
         enabled = data.pop("enabled", True)
         return cls(enabled=enabled, extra=dict(data))
 
@@ -44,7 +44,7 @@ class SearchConfig:
     default_limit: int = 20
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "SearchConfig":
+    def from_dict(cls, data: dict[str, Any]) -> SearchConfig:
         return cls(
             semantic=data.get("semantic", True),
             keyword_weight=float(data.get("keyword_weight", 0.6)),
@@ -87,7 +87,7 @@ class AppConfig:
         }
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "AppConfig":
+    def from_dict(cls, data: dict[str, Any]) -> AppConfig:
         db_path = Path(
             data.get(
                 "db_path", str(Path.home() / ".local" / "share" / "agent-context" / "index.db")

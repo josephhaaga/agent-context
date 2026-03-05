@@ -57,11 +57,11 @@ async def keyword_search(
     if not raw:
         return []
 
-    docs, scores = zip(*raw)
+    docs, scores = zip(*raw, strict=True)
     normed = _normalize_bm25(list(scores))
 
     results = []
-    for doc, norm_score in zip(docs, normed):
+    for doc, norm_score in zip(docs, normed, strict=True):
         excerpt = _make_excerpt(doc.content, query)
         results.append(
             SearchResult(

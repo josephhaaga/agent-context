@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import importlib.metadata
 from abc import ABC, abstractmethod
+from collections.abc import AsyncIterator
 from datetime import datetime
-from typing import AsyncIterator
 
 from agent_context.models import Document, SourceStatus
 
