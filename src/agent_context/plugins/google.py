@@ -110,7 +110,9 @@ async def _loopback_oauth(client_id: str, client_secret: str) -> str:
             self.end_headers()
             self.wfile.write(b"<h1>Authenticated! You can close this tab.</h1>")
 
-        def log_message(self, *_: object) -> None:  # suppress server log noise
+        def log_message(
+            self, format: str, *args: object
+        ) -> None:  # suppress server log noise  # noqa: A002
             pass
 
     server = HTTPServer(("localhost", port), _Handler)

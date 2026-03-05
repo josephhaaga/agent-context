@@ -1,0 +1,135 @@
+2026-03-05 16:06:33,264 [PID 52318] INFO No binary specified, looking for `pyre.bin` in PATH
+2026-03-05 16:06:33,264 [PID 52318] INFO Pyre binary is located at `/Users/josephhaaga/Documents/code/agent-context/.venv/bin/pyre.bin`
+2026-03-05 16:06:33,264 [PID 52318] INFO Could not determine the number of Pyre workers from configuration. Auto-set the value to 4.
+2026-03-05 16:06:33,273 [PID 52318] INFO No typeshed specified, looking for it...
+2026-03-05 16:06:33,273 [PID 52318] INFO Found: `/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed`
+2026-03-05 16:06:33,274 [PID 52318] INFO Writing arguments into /var/folders/yz/zbyfjv1n1x12h8wkz3mk_hqc0000gp/T/pyre_arguments_wb44a45c.json...
+2026-03-05 16:06:33,274 [PID 52318] DEBUG Arguments:
+{
+  "source_paths": {
+    "kind": "simple",
+    "paths": [
+      "/Users/josephhaaga/Documents/code/agent-context/src$agent_context"
+    ]
+  },
+  "search_paths": [
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$dataclasses_json",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$packaging",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$anyio",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$huggingface_hub",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$cryptography",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$mdit_py_plugins",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$annotated_doc",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$charset_normalizer",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$typing_inspection",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$click",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$urllib3",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$rich",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$platformdirs",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$mdurl",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$pytest",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$python_discovery",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$_pytest",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$jinja2",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$numpy",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$pytest_asyncio",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$textual",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$safetensors",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$httpcore",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$idna",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$pydantic_core",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$sentence_transformers",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$virtualenv",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$pytest_httpx",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$pluggy",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$testslide",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$marshmallow",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$tomli_w",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$certifi",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$markupsafe",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$transformers",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$rsa",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$typeguard",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$dotenv",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$typer",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$pydantic",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$torch",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$pydantic_settings",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$markdown_it",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$h11",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$libcst",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$aiosqlite",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$identify",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$httpx",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$iniconfig",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$tomli",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$annotated_types",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/python3.12/site-packages$filelock",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stdlib",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/ExifRead",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/PyMySQL",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/PyYAML",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/aiofiles",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/chevron",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/colorama",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/ldap3",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/mysqlclient",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/paramiko",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/psycopg2",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/pycurl",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/python-dateutil",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/pytz",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/regex",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/requests",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/retry",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/tqdm",
+    "/Users/josephhaaga/Documents/code/agent-context/.venv/lib/pyre_check/typeshed/stubs/ujson"
+  ],
+  "excludes": [],
+  "checked_directory_allowlist": [
+    "/Users/josephhaaga/Documents/code/agent-context/src/agent_context"
+  ],
+  "checked_directory_blocklist": [],
+  "extensions": [],
+  "log_path": "/Users/josephhaaga/Documents/code/agent-context/.pyre",
+  "global_root": "/Users/josephhaaga/Documents/code/agent-context",
+  "debug": false,
+  "python_version": {
+    "major": 3,
+    "minor": 12,
+    "micro": 0
+  },
+  "system_platform": "darwin",
+  "shared_memory": {},
+  "parallel": true,
+  "number_of_workers": 4,
+  "additional_logging_sections": [],
+  "show_error_traces": false,
+  "strict": true
+}
+2026-03-05 16:06:36,431 [PID 52318] PERFORMANCE  Initialized shared memory (heap size: 8589934592, dep table pow: 1, hash table pow: 26): 0.001s
+2026-03-05 16:06:36,443 [PID 52318] PERFORMANCE  Initialized multiprocessing workers (workers: 4): 0.012s
+2026-03-05 16:06:36,443 [PID 52318] INFO  Building module tracker...
+2026-03-05 16:06:37,317 [PID 52318] PERFORMANCE  Module tracker built: 0.871s
+2026-03-05 16:06:37,317 [PID 52318] PERFORMANCE  Full environment built: 0.872s
+2026-03-05 16:06:37,317 [PID 52318] INFO  Collecting all definitions...
+2026-03-05 16:06:37,487 [PID 52318] PERFORMANCE  Collected definitions (defines: 170): 0.169s
+2026-03-05 16:06:37,487 [PID 52318] INFO  Checking 170 functions...
+2026-03-05 16:06:37,985 [PID 52318] INFO  Processed 22 of 170 functions
+2026-03-05 16:06:38,348 [PID 52318] INFO  Processed 44 of 170 functions
+2026-03-05 16:06:38,472 [PID 52318] INFO  Processed 66 of 170 functions
+2026-03-05 16:06:38,472 [PID 52318] INFO  Processed 88 of 170 functions
+2026-03-05 16:06:38,497 [PID 52318] INFO  Processed 110 of 170 functions
+2026-03-05 16:06:38,694 [PID 52318] INFO  Processed 132 of 170 functions
+2026-03-05 16:06:38,731 [PID 52318] INFO  Processed 148 of 170 functions
+2026-03-05 16:06:39,142 [PID 52318] INFO  Processed 170 of 170 functions
+2026-03-05 16:06:39,142 [PID 52318] PERFORMANCE  Check_TypeCheck: 1.654s
+2026-03-05 16:06:39,142 [PID 52318] MEMORY  Shared memory size post-typecheck (size: 6)
+2026-03-05 16:06:39,142 [PID 52318] INFO  Postprocessing 28 sources...
+2026-03-05 16:06:39,208 [PID 52318] INFO  Postprocessed 4 of 28 sources
+2026-03-05 16:06:39,208 [PID 52318] INFO  Postprocessed 12 of 28 sources
+2026-03-05 16:06:39,221 [PID 52318] INFO  Postprocessed 20 of 28 sources
+2026-03-05 16:06:39,221 [PID 52318] INFO  Postprocessed 28 of 28 sources
+2026-03-05 16:06:39,221 [PID 52318] PERFORMANCE  Check_Postprocessing: 0.076s
+2026-03-05 16:06:39,221 [PID 52318] PERFORMANCE  Check (request kind: FullCheck): 2.775s
+2026-03-05 16:06:39,234 [PID 52318] ERROR Found 56 type errors!

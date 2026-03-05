@@ -30,11 +30,8 @@ jobs:
       - name: Lint with ruff
         run: uv run ruff check src/ tests/
 
-      - name: Install watchman
-        run: sudo apt-get install -y watchman
-
-      - name: Type check with pyre
-        run: uv run pyre check
+      - name: Type check with pyright
+        run: uv run pyright src/
 
       - name: Run tests
         run: uv run pytest tests/ -v

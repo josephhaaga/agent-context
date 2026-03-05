@@ -6,11 +6,8 @@ repos:
         args: [--fix]
       - id: ruff-format
 
-  - repo: local
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.408
     hooks:
-      - id: pyre-check
-        name: pyre type check
-        entry: uv run pyre check
-        language: system
-        pass_filenames: false
+      - id: pyright
         stages: [pre-push]
