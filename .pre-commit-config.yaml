@@ -6,8 +6,11 @@ repos:
         args: [--fix]
       - id: ruff-format
 
-  - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.408
+  - repo: local
     hooks:
       - id: pyright
+        name: pyright type check
+        entry: uv run pyright src/
+        language: system
+        pass_filenames: false
         stages: [pre-push]
